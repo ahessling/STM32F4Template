@@ -12,6 +12,7 @@ set(opt_level "-O2")
 set(elf_file ${application_name}.elf)
 set(bin_file ${application_name}.bin)
 set(hex_file ${application_name}.hex)
+set(map_file ${application_name}.map)
 
 # add sources to elf file
 add_executable(${elf_file} ${sources})
@@ -19,10 +20,11 @@ add_executable(${elf_file} ${sources})
 # link StdPeriph library to project
 target_link_libraries(${elf_file} stm32f4xx)
 
-# set additional for compiler and linker
-set(additional_flags ${opt_level})
-target_compile_options(${elf_file} PRIVATE ${additional_flags})
-#target_link_libraries(${elf_file} PRIVATE ${additional_flags})
+# set additional for compiler and linker: optimization and generate map file
+set(additional_compiler_flags ${opt_level})
+set(additional_linker_flags -Wl,-Map=${map_file},--cref,--no-warn-mismatch)
+target_compile_options(${elf_file} PRIVATE ${additional_compiler_flags})
+target_link_libraries(${elf_file} PRIVATE ${additional_linker_flags})
 
 # show size of resulting firmware image
 add_custom_target(${elf_file}-size DEPENDS ${elf_file} COMMAND ${ARM_SIZE_EXECUTABLE} -B ${elf_file})
