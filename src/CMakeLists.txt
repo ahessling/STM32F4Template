@@ -37,3 +37,8 @@ add_custom_target(${lss_file} DEPENDS ${elf_file} COMMAND ${CMAKE_OBJDUMP} -S ${
 add_custom_target(${hex_file} DEPENDS ${elf_file} COMMAND ${CMAKE_OBJCOPY} -Oihex ${elf_file} ${hex_file})
 add_custom_target(${bin_file} DEPENDS ${elf_file} COMMAND ${CMAKE_OBJCOPY} -Obinary ${elf_file} ${bin_file})
 add_custom_target(${application_name} ALL DEPENDS ${elf_file}-size ${bin_file} ${hex_file} ${lss_file})
+
+# OpenOCD targets
+add_custom_target(flash DEPENDS ${elf_file} COMMAND ${OPENOCD_EXECUTABLE}
+  -f ${OPENOCD_CONFIG}
+  --command "program ${elf_file} reset exit")
