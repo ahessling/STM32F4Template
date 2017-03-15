@@ -1,0 +1,2 @@
+Use one of these startup files that matches the used STM32F4 family and link against it - or write your own custom startup file.
+Also make sure that the system_stm32f4xx.c is present and fits your hardware as the clock configurations are made there.
