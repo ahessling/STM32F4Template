@@ -12,6 +12,9 @@ set(HSE_VALUE 8000000)
 # Used linker file (just for testing)
 get_filename_component(LINKER_SCRIPT linker/STM32F417IGHx_FLASH.ld ABSOLUTE)
 
+# Use LTO? WARNING: This might break the code
+#set(ADDITIONAL_CORE_FLAGS -flto)
+
 # add libraries
 add_subdirectory(lib)
 
