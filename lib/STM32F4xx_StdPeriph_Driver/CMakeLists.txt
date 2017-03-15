@@ -41,6 +41,7 @@ set(sources
     src/stm32f4xx_tim.c
     src/stm32f4xx_usart.c
     src/stm32f4xx_wwdg.c
+    pure_virtual.c            # this is needed for CPP size optimization
 )
 
 # FMC/FSMC only defined for some F4 families
