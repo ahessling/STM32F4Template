@@ -11,3 +11,4 @@ CTestTestfile.cmake
 *.bin
 *.hex
 *.map
+*.lss
