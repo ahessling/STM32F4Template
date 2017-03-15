@@ -23,3 +23,11 @@ target_link_libraries(${elf_file} stm32f4xx)
 set(additional_flags ${opt_level})
 target_compile_options(${elf_file} PRIVATE ${additional_flags})
 #target_link_libraries(${elf_file} PRIVATE ${additional_flags})
+
+# show size of resulting firmware image
+add_custom_target(${elf_file}-size DEPENDS ${elf_file} COMMAND ${ARM_SIZE_EXECUTABLE} -B -d --target=binary ${elf_file})
+
+# create binary and hex files
+add_custom_target(${hex_file} DEPENDS ${elf_file} COMMAND ${CMAKE_OBJCOPY} -Oihex ${elf_file} ${hex_file})
+add_custom_target(${bin_file} DEPENDS ${elf_file} COMMAND ${CMAKE_OBJCOPY} -Obinary ${elf_file} ${bin_file})
+add_custom_target(${application_name} ALL DEPENDS ${elf_file}-size ${bin_file} ${hex_file})
