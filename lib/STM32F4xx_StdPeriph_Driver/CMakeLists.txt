@@ -64,6 +64,6 @@ target_compile_definitions(stm32f4xx PUBLIC HSE_VALUE=${HSE_VALUE})
 # additional compiler options: always use size-optimized version of library
 set(additional_flags -Os)
 target_compile_options(stm32f4xx PRIVATE ${additional_flags})
-target_link_libraries(stm32f4xx PRIVATE ${additional_flags})
+#target_link_libraries(stm32f4xx PRIVATE ${additional_flags})
 
 target_link_libraries(stm32f4xx PUBLIC -T${LINKER_SCRIPT})
