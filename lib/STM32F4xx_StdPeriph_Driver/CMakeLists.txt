@@ -60,7 +60,12 @@ target_compile_definitions(stm32f4xx PUBLIC USE_STDPERIPH_DRIVER)
 target_compile_definitions(stm32f4xx PUBLIC ${DEVICE_FAMILY})
 target_compile_definitions(stm32f4xx PUBLIC HSE_VALUE=${HSE_VALUE})
 
-# additional compiler options: always use size-optimized version of library
-set(additional_flags -Os)
+# additional compiler options: use size-optimized version of library in release build, use -O0 in debug build
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+  set(additional_flags -O0)
+else()
+  set(additional_flags -Os)
+endif()
+
 target_compile_options(stm32f4xx PRIVATE ${additional_flags})
 #target_link_libraries(stm32f4xx PRIVATE ${additional_flags})

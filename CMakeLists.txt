@@ -1,5 +1,12 @@
 cmake_minimum_required (VERSION 2.8.12)
 
+# set the build type
+if(NOT CMAKE_BUILD_TYPE) 
+    set(CMAKE_BUILD_TYPE Release)
+endif(NOT CMAKE_BUILD_TYPE)
+
+message("CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
+
 # set search path for CMake modules
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/Modules)
 

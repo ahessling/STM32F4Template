@@ -5,8 +5,12 @@ set(sources
     startup_stm32f40_41xxx.s
 )
 
-# GCC optimization level
-set(opt_level "-O2")
+# GCC optimization level: use -O0 in debug build, otherwise -O2
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+  set(opt_level -O0)
+else()
+  set(opt_level -Os)
+endif()
 
 # set some project constants
 set(elf_file ${application_name}.elf)
