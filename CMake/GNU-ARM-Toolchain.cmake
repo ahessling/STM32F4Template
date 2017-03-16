@@ -32,5 +32,8 @@ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
+# find additional toolchain executables
 find_program(ARM_SIZE_EXECUTABLE arm-none-eabi-size)
 find_program(ARM_GDB_EXECUTABLE arm-none-eabi-gdb)
+find_program(ARM_OBJCOPY_EXECUTABLE arm-none-eabi-objcopy)
+find_program(ARM_OBJDUMP_EXECUTABLE arm-none-eabi-objdump)
