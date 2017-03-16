@@ -21,9 +21,6 @@ set(CMAKE_CXX_FLAGS "${CORE_FLAGS} -fno-rtti -fno-exceptions -fno-builtin -Wall 
 
 set(CMAKE_ASM_FLAGS "${CORE_FLAGS} -g -ggdb3 -D__USES_CXX" CACHE INTERNAL "asm compiler flags")
 
-# linker specific flags
-set(CMAKE_EXE_FLAGS "${CORE_FLAGS} -g -Wl,--gc-sections")
-
 # search for programs in the build host directories
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 
