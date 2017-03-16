@@ -5,10 +5,17 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif(NOT CMAKE_BUILD_TYPE)
 
-message("CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+  message("Debug build.")
+elseif(CMAKE_BUILD_TYPE MATCHES Release)
+  message("Release build.")
+endif()
 
 # set search path for CMake modules
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/Modules)
+
+# include OpenOCD module, but make it not required
+find_package(Openocd)
 
 # Project specific settings
 set(application_name "STM32F4Template")
