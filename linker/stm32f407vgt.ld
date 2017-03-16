@@ -17,27 +17,27 @@ MEMORY
  * It defines following symbols, which code can use without definition:
  *   __exidx_start
  *   __exidx_end
- *   __copy_table_start__
- *   __copy_table_end__
- *   __zero_table_start__
- *   __zero_table_end__
  *   __etext
- *   __data_start__
+ *   _sdata
  *   __preinit_array_start
  *   __preinit_array_end
  *   __init_array_start
  *   __init_array_end
  *   __fini_array_start
  *   __fini_array_end
- *   __data_end__
+ *   _edata
+ *   _sbss
  *   __bss_start__
  *   __bss_end__
+ *   _ebss
  *   __end__
  *   end
  *   __HeapLimit
  *   __StackLimit
  *   __StackTop
- *   __stack
+ *   __estack
+ *   _sidata
+ *   _siccmram
  */
 ENTRY(Reset_Handler)
 
