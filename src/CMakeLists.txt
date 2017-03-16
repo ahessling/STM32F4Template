@@ -27,6 +27,12 @@ set(additional_linker_flags -Wl,-Map=${map_file},--cref,--no-warn-mismatch)
 target_compile_options(${elf_file} PRIVATE ${additional_compiler_flags})
 target_link_libraries(${elf_file} PRIVATE ${additional_linker_flags})
 
+# remove unused sections
+target_link_libraries(${elf_file} PUBLIC "-g -Wl,--gc-sections")
+
+# link with linker file
+target_link_libraries(${elf_file} PUBLIC -T${LINKER_SCRIPT})
+
 # show size of resulting firmware image
 add_custom_target(${elf_file}-size DEPENDS ${elf_file} COMMAND ${ARM_SIZE_EXECUTABLE} -B ${elf_file})
 

@@ -66,5 +66,3 @@ target_compile_definitions(stm32f4xx PUBLIC HSE_VALUE=${HSE_VALUE})
 set(additional_flags -Os)
 target_compile_options(stm32f4xx PRIVATE ${additional_flags})
 #target_link_libraries(stm32f4xx PRIVATE ${additional_flags})
-
-target_link_libraries(stm32f4xx PUBLIC -T${LINKER_SCRIPT})
