@@ -6,6 +6,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/Modules)
 # Project specific settings
 set(application_name "STM32F4Template")
 
+project (${application_name} C CXX ASM)
+
 # STM32-specific settings
 set(DEVICE_FAMILY STM32F40_41xxx)
 
@@ -25,5 +27,4 @@ get_filename_component(OPENOCD_CONFIG tools/stm32f4discovery.cfg ABSOLUTE)
 add_subdirectory(lib)
 
 # add main project
-project (${application_name} C CXX ASM)
 add_subdirectory(src)
