@@ -24,6 +24,24 @@ You may want to use `build-debug` in the early development stage. This will gene
 
 You can also let CMake generate project files for **Eclipse**. Try executing `build-eclipse` which generates a project directory **as a sibling to the root directory of this project**. This is the way recommended by CMake. In Eclipse, just import the newly created project directory. All paths should have been automatically discovered so that the auto-completion feature works.
 
+# Adaption
+I tried to keep this template as clean as possible. The CMake settings I made should be self-explaining and you should be able to easily create your own project with this template as a base.
+
+General project settings (the name, STM32 device family, important library defines, the linker and startup files) are made in the [root CMakeLists.txt file](CMakeLists.txt).
+
+In [CMake/GNU-ARM-Toolchain.cmake](CMake/GNU-ARM-Toolchain.cmake), you can find the global C/C++ compiler and core flags. These should be sane for most STM32F4-based projects, but you might need to adjust them.
+
+In the `lib/startup_files` subdirectory, you can find the startup files for all STM32F4 families. Select the correct one and copy it to the `src` directory.
+
+You must also edit [src/CMakeLists.txt](src/CMakeLists.txt) as it contains your source files that should be compiled and linked.
+
+Please also make sure that the linker file is correct. In most applications, this default linker file suffices and the only things you might have to change are the flash and RAM sizes in the `MEMORY` section.
+
+Last but not least: The included [src/system_stm32f4xx.c](src/system_stm32f4xx.c) works for the discovery board. Adapt it to your own needs (clock configuration, PLL, etc.). But this is beyond the scope of this project.
+
+## Other STM32 families
+This template targets the STM32F4 family. But targeting other families (e.g. STM32F0) should be easy. Just adapt the core flags and exchange the standard peripheral library.
+
 # References
 These projects helped me a lot while creating this template:
 - [STM32-CMake-CodeSourcery](https://github.com/adrienbailly/STM32-CMake-CodeSourcery)
