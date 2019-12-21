@@ -12,3 +12,5 @@ CTestTestfile.cmake
 *.hex
 *.map
 *.lss
+.idea/*
+cmake-build-debug/*
