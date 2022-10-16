@@ -14,3 +14,4 @@ CTestTestfile.cmake
 *.lss
 .idea/*
 cmake-build-debug/*
+/build
