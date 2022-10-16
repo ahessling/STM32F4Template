@@ -19,6 +19,14 @@ This will also generate an Intel HEX file (*.hex*), a binary file (*.bin*), a ma
 
 Use `make flash` for flashing via OpenOCD. In this example, the ST-Link on the STM32F4Discovery board is assumed. You might have to adapt this.
 
+## Debugging
+
+The target `ocd_serve` runs OpenOCD against the target and serves an interface for GDB
+to connect to on a local port. This uses the same ST-Link configuration as the `flash` target.
+
+The target `gdb_connect` runs the ARM GDB against this port and provides a live debugger
+for the program running on the device.
+
 # Options
 You may want to use `build-debug` in the early development stage. This will generate Makefiles which compile the firmware with no optimization (**-O0**). Otherwise, optimization for size (**-Os**) will be used.
 
