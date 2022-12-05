@@ -52,3 +52,19 @@ add_custom_target(${application_name} ALL DEPENDS ${elf_file}-size ${bin_file} $
 add_custom_target(flash DEPENDS ${elf_file} COMMAND ${OPENOCD_EXECUTABLE}
   -f ${OPENOCD_CONFIG}
   --command "program ${elf_file} reset exit")
+
+  # The port that OpenOCD will serve a gdb interface on
+if(NOT GDB_DEBUG_PORT)
+  set(GDB_DEBUG_PORT "4242")
+endif()
+
+# Connect OCD to the device and serve for an incoming GDB connection
+add_custom_target(ocd_serve DEPENDS ${elf_file} COMMAND ${OPENOCD_EXECUTABLE}
+  -f ${OPENOCD_CONFIG}
+  --command "gdb_port ${GDB_DEBUG_PORT}")
+
+# Run GDB against the target on the device, via OpenOCD
+add_custom_target(gdb_connect DEPENDS ${elf_file} COMMAND ${ARM_GDB_EXECUTABLE}
+  -ex "target remote localhost:${GDB_DEBUG_PORT}"
+  -ex "monitor reset halt"
+  ${elf_file})
